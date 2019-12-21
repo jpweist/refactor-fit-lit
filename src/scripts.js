@@ -1,5 +1,6 @@
 import './css/base.scss';
 import './css/styles.scss';
+import $ from 'jquery';
 
 import userData from './data/users';
 import activityData from './data/activity';
@@ -37,7 +38,7 @@ let user = userRepository.users[0];
 let todayDate = "2019/09/22";
 user.findFriendsNames(userRepository.users);
 
-let dailyOz = document.querySelectorAll('.daily-oz');
+let dailyOz = $('.daily-oz');
 let dropdownEmail = document.querySelector('#dropdown-email');
 let dropdownFriendsStepsContainer = document.querySelector('#dropdown-friends-steps-container');
 let dropdownGoal = document.querySelector('#dropdown-goal');
