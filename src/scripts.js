@@ -1,6 +1,6 @@
 import './css/base.scss';
 import './css/styles.scss';
-import variables from '_variables.scss';
+import variables from './css/_variables.scss';
 
 import $ from 'jquery';
 
