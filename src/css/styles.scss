@@ -8,20 +8,6 @@ margin: 0;
 padding: 0;
 }
 
-// $body-background-color: #1F1F1F;
-// $user-info-dropdown: white;
-// $steps-card-color: #F5634B;
-// $hydration-card-color: #54C6BE;
-// $stairs-card-color: #8975B2;
-// $sleep-card-color:  #FBD089;
-// $green-text: green;
-// $red-text: red;
-// $yellow-text: #F8BA00;
-//
-// $main-body-font: 'Oswald', sans-serif;
-// $secondary-font: 'Work Sans', sans-serif;
-//
-
 body {
   background-color: $body-background-color;
   font-family: $main-body-font;
@@ -193,7 +179,6 @@ main {
   width: 20vw;
 }
 
-/* BUTTONS */
 .info-button {
   background-position: center;
   background-size: 3.4vw;
@@ -205,45 +190,25 @@ main {
 }
 
 .friends-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  display: inline;
-  height: 3.4vw;
+  @extend .info-button;
   margin-right: 1vw;
-  width: 3.4vw;
 }
 
 .calendar-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  display: inline;
+  @extend .info-button;
   float: right;
-  height: 3.4vw;
   margin-right: 1vw;
-  width: 3.4vw;
 }
 
 .trending-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  height: 3.4vw;
+  @extend .info-button;
   margin-left: 1vw;
-  width: 3.4vw;
 }
 
 .go-back-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  height: 3.4vw;
+  @extend .info-button;
   margin-left: 1vw;
-  width: 3.4vw;
 }
-
-
 
 .steps-go-back-button {
   background-image: url(../images/steps-goback.png);
