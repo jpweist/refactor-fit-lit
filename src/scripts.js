@@ -1,5 +1,8 @@
 import './css/base.scss';
 import './css/styles.scss';
+import variables from './css/_variables.scss';
+
+import $ from 'jquery';
 
 import userData from './data/users';
 import activityData from './data/activity';
@@ -13,8 +16,9 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 
 
-
+// can i wrap this whole section of new Classes and put that in the api call??
 let userRepository = new UserRepository();
+console.log(userRepository);
 
 userData.forEach(user => {
   user = new User(user);
@@ -32,12 +36,13 @@ hydrationData.forEach(hydration => {
 sleepData.forEach(sleep => {
   sleep = new Sleep(sleep, userRepository);
 });
+/// area for function? upt to comment
 
 let user = userRepository.users[0];
 let todayDate = "2019/09/22";
 user.findFriendsNames(userRepository.users);
-
-let dailyOz = document.querySelectorAll('.daily-oz');
+// a lot a varirables here can we make them $jQuery?
+let dailyOz = document.querySelector('.daily-oz');
 let dropdownEmail = document.querySelector('#dropdown-email');
 let dropdownFriendsStepsContainer = document.querySelector('#dropdown-friends-steps-container');
 let dropdownGoal = document.querySelector('#dropdown-goal');
@@ -101,6 +106,7 @@ let stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
 let trendingStepsPhraseContainer = document.querySelector('.trending-steps-phrase-container');
 let trendingStairsPhraseContainer = document.querySelector('.trending-stairs-phrase-container');
 let userInfoDropdown = document.querySelector('#user-info-dropdown');
+// end of all the possible $jQuery variables.
 
 mainPage.addEventListener('click', showInfo);
 profileButton.addEventListener('click', showDropdown);
@@ -115,7 +121,7 @@ function flipCard(cardToHide, cardToShow) {
 function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
 }
-
+// activity for the page filips over stuff
 function showInfo() {
   if (event.target.classList.contains('steps-info-button')) {
     flipCard(stepsMainCard, stepsInfoCard);
