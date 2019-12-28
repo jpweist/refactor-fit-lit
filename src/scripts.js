@@ -18,7 +18,7 @@ import Sleep from './Sleep';
 
 // can i wrap this whole section of new Classes and put that in the api call??
 let userRepository = new UserRepository();
-console.log(userRepository);
+// console.log(userRepository);
 
 userData.forEach(user => {
   user = new User(user);
@@ -36,6 +36,64 @@ hydrationData.forEach(hydration => {
 sleepData.forEach(sleep => {
   sleep = new Sleep(sleep, userRepository);
 });
+
+
+//#########
+let userDataApi, sleepDataApi, actDataApi, hydDataApi;
+let userApi, sleepApi, actApi, hydApi;
+
+function getApiData(ext, callback){
+  fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/" + ext)
+  .then(response => response.json())
+  .then(data => {
+    callback(data);
+
+  })
+
+}
+
+function startInitalizer() {
+  getApiData('users/userData', (data) => {
+    userDataApi = data.userData;
+    userApi = new User(userDataApi[0]);
+    userRepository.users.push(userApi)
+    console.log(userApi);
+  });
+  getApiData('sleep/sleepData', (sleepData) => {
+    sleepData = sleepData;
+    sleepApi = new Sleep(userApi, sleepData.sleepData);
+    console.log(sleepApi);
+  });
+}
+startInitalizer();
+
+// function getCheck() {
+//   if (getCounter === 4) {
+//     initDom();
+//   }
+// }
+
+
+// getHelper('sleep/sleepData', (sleepData) => {
+//   sleepData = sleepData;
+//   sleep = new Sleep(userData, sleepData.sleepData);
+// })
+
+//
+// function getCheck() {
+//   if (getCounter === 4) {
+//     initDom();
+//   }
+// }
+
+
+// ###############
+
+
+
+
+
+// #############
 /// area for function? upt to comment
 
 let user = userRepository.users[0];
