@@ -18,7 +18,7 @@ import Sleep from './Sleep';
 
 // can i wrap this whole section of new Classes and put that in the api call??
 let userRepository = new UserRepository();
-console.log(userRepository);
+// console.log(userRepository);
 
 userData.forEach(user => {
   user = new User(user);
@@ -42,14 +42,14 @@ let user = userRepository.users[0];
 let todayDate = "2019/09/22";
 user.findFriendsNames(userRepository.users);
 // a lot a varirables here can we make them $jQuery?
-let dailyOz = document.querySelector('.daily-oz');
-let dropdownEmail = document.querySelector('#dropdown-email');
+let dailyOz = $('.daily-oz');
+let dropdownEmail = $('#dropdown-email');
 let dropdownFriendsStepsContainer = document.querySelector('#dropdown-friends-steps-container');
-let dropdownGoal = document.querySelector('#dropdown-goal');
-let dropdownName = document.querySelector('#dropdown-name');
-let headerName = document.querySelector('#header-name');
+let dropdownGoal = $('#dropdown-goal');
+let dropdownName = $('#dropdown-name');
+let headerName = $('#header-name');
 let hydrationCalendarCard = document.querySelector('#hydration-calendar-card');
-let hydrationFriendOuncesToday = document.querySelector('#hydration-friend-ounces-today');
+let hydrationFriendOuncesToday = $('#hydration-friend-ounces-today');
 let hydrationFriendsCard = document.querySelector('#hydration-friends-card');
 let hydrationInfoCard = document.querySelector('#hydration-info-card');
 let hydrationInfoGlassesToday = document.querySelector('#hydration-info-glasses-today');
@@ -58,14 +58,14 @@ let hydrationUserOuncesToday = document.querySelector('#hydration-user-ounces-to
 let mainPage = document.querySelector('main');
 let profileButton = document.querySelector('#profile-button');
 let sleepCalendarCard = document.querySelector('#sleep-calendar-card');
-let sleepCalendarHoursAverageWeekly = document.querySelector('#sleep-calendar-hours-average-weekly');
-let sleepCalendarQualityAverageWeekly = document.querySelector('#sleep-calendar-quality-average-weekly');
+let sleepCalendarHoursAverageWeekly = $('#sleep-calendar-hours-average-weekly');
+let sleepCalendarQualityAverageWeekly = $('#sleep-calendar-quality-average-weekly');
 let sleepFriendLongestSleeper = document.querySelector('#sleep-friend-longest-sleeper');
 let sleepFriendsCard = document.querySelector('#sleep-friends-card');
 let sleepFriendWorstSleeper = document.querySelector('#sleep-friend-worst-sleeper');
 let sleepInfoCard = document.querySelector('#sleep-info-card');
-let sleepInfoHoursAverageAlltime = document.querySelector('#sleep-info-hours-average-alltime');
-let sleepInfoQualityAverageAlltime = document.querySelector('#sleep-info-quality-average-alltime');
+let sleepInfoHoursAverageAlltime = $('#sleep-info-hours-average-alltime');
+let sleepInfoQualityAverageAlltime = $('#sleep-info-quality-average-alltime');
 let sleepInfoQualityToday = document.querySelector('#sleep-info-quality-today');
 let sleepMainCard = document.querySelector('#sleep-main-card');
 let sleepUserHoursToday = document.querySelector('#sleep-user-hours-today');
@@ -193,27 +193,36 @@ for (var i = 0; i < dailyOz.length; i++) {
   dailyOz[i].innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
 }
 
-dropdownGoal.innerText = `DAILY STEP GOAL | ${user.dailyStepGoal}`;
 
-dropdownEmail.innerText = `EMAIL | ${user.email}`;
+// dropdownGoal.innerText = `DAILY STEP GOAL | ${user.dailyStepGoal}`;
+// dropdownEmail.innerText = `EMAIL | ${user.email}`;
+// dropdownName.innerText = user.name.toUpperCase();
+// headerName.innerText = `${user.getFirstName()}'S `;
 
-dropdownName.innerText = user.name.toUpperCase();
+dropdownGoal.text(`DAILY STEP GOAL | ${user.dailyStepGoal}`);
+dropdownEmail.text(`EMAIL | ${user.email}`);
+dropdownName.text(user.name.toUpperCase());
+headerName.text(`${user.getFirstName()}'S `);
 
-headerName.innerText = `${user.getFirstName()}'S `;
+
 
 hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
   return hydration.userID === user.id && hydration.date === todayDate;
 }).numOunces;
 
-hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
+// hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
+hydrationFriendOuncesToday.text(userRepository.calculateAverageDailyWater(todayDate));
 
 hydrationInfoGlassesToday.innerText = hydrationData.find(hydration => {
   return hydration.userID === user.id && hydration.date === todayDate;
 }).numOunces / 8;
 
-sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(todayDate);
+// sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(todayDate);
+// sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(todayDate);
 
-sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(todayDate);
+sleepCalendarHoursAverageWeekly.text(user.calculateAverageHoursThisWeek(todayDate));
+sleepCalendarQualityAverageWeekly.text(user.calculateAverageQualityThisWeek(todayDate));
+
 
 sleepFriendLongestSleeper.innerText = userRepository.users.find(user => {
   return user.id === userRepository.getLongestSleepers(todayDate)
@@ -223,13 +232,15 @@ sleepFriendWorstSleeper.innerText = userRepository.users.find(user => {
   return user.id === userRepository.getWorstSleepers(todayDate)
 }).getFirstName();
 
-sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
+// sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
+sleepInfoHoursAverageAlltime.text(user.hoursSleptAverage);
 
 stepsInfoMilesWalkedToday.innerText = user.activityRecord.find(activity => {
   return (activity.date === todayDate && activity.userId === user.id)
 }).calculateMiles(userRepository);
 
 sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
+// sleepInfoQualityAverageAlltime.text(user.sleepQualityAverage);
 
 sleepInfoQualityToday.innerText = sleepData.find(sleep => {
   return sleep.userID === user.id && sleep.date === todayDate;
@@ -239,9 +250,9 @@ sleepUserHoursToday.innerText = sleepData.find(sleep => {
   return sleep.userID === user.id && sleep.date === todayDate;
 }).hoursSlept;
 
-stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(todayDate);
+// stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(todayDate);
 
-stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
+// stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
 
 stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageStairs(todayDate) / 12).toFixed(1);
 
