@@ -55,8 +55,8 @@ let hydrationInfoCard = document.querySelector('#hydration-info-card');
 let hydrationInfoGlassesToday = document.querySelector('#hydration-info-glasses-today');
 let hydrationMainCard = document.querySelector('#hydration-main-card');
 let hydrationUserOuncesToday = document.querySelector('#hydration-user-ounces-today');
-let mainPage = document.querySelector('main');
-let profileButton = document.querySelector('#profile-button');
+let $mainPage = document.querySelector('main');
+let $profileButton = $('#profile-button');
 let sleepCalendarCard = document.querySelector('#sleep-calendar-card');
 let $sleepCalendarHoursAverageWeekly = $('#sleep-calendar-hours-average-weekly');
 let $sleepCalendarQualityAverageWeekly = $('#sleep-calendar-quality-average-weekly');
@@ -91,7 +91,7 @@ let stairsFriendsCard = document.querySelector('#stairs-friends-card');
 let stairsInfoCard = document.querySelector('#stairs-info-card');
 let stairsInfoFlightsToday = document.querySelector('#stairs-info-flights-today');
 let stairsMainCard = document.querySelector('#stairs-main-card');
-let stairsTrendingButton = $('.stairs-trending-button');
+let $stairsTrendingButton = $('.stairs-trending-button');
 let stairsTrendingCard = document.querySelector('#stairs-trending-card');
 let stairsUserStairsToday = document.querySelector('#stairs-user-stairs-today');
 let stepsCalendarTotalActiveMinutesWeekly = document.querySelector('#steps-calendar-total-active-minutes-weekly');
@@ -101,17 +101,17 @@ let stepsInfoActiveMinutesToday = document.querySelector('#steps-info-active-min
 let stepsInfoMilesWalkedToday = document.querySelector('#steps-info-miles-walked-today');
 let stepsFriendActiveMinutesAverageToday = $('#steps-friend-active-minutes-average-today');
 let stepsFriendStepsAverageToday = $('#steps-friend-steps-average-today');
-let stepsTrendingButton = document.querySelector('.steps-trending-button');
+let $stepsTrendingButton = $('.steps-trending-button');
 let stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
 let $trendingStepsPhraseContainer = $('.trending-steps-phrase-container');
-let trendingStairsPhraseContainer = $('.trending-stairs-phrase-container');
+let $trendingStairsPhraseContainer = $('.trending-stairs-phrase-container');
 let userInfoDropdown = document.querySelector('#user-info-dropdown');
 // end of all the possible $jQuery variables.
 
-mainPage.addEventListener('click', showInfo);
-profileButton.addEventListener('click', showDropdown);
-stairsTrendingButton.on('click', updateTrendingStairsDays());
-stepsTrendingButton.addEventListener('click', updateTrendingStepDays());
+$mainPage.addEventListener('click', showInfo);
+$profileButton.on('click', showDropdown);
+$stairsTrendingButton.on('click', updateTrendingStairsDays());
+$stepsTrendingButton.on('click', updateTrendingStepDays());
 
 function flipCard(cardToHide, cardToShow) {
   cardToHide.classList.add('hide');
@@ -184,7 +184,7 @@ function showInfo() {
 function updateTrendingStairsDays() {
   user.findTrendingStairsDays();
   // trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-  trendingStairsPhraseContainer.html(`<p class='trend-line'>${user.trendingStairsDays[0]}</p>`);
+  $trendingStairsPhraseContainer.html(`<p class='trend-line'>${user.trendingStairsDays[0]}</p>`);
 }
 
 function updateTrendingStepDays() {
@@ -274,7 +274,7 @@ stairsUserStairsToday.innerText = activityData.find(activity => {
 
 stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
 
-stairsTrendingButton.on('click', function() {
+$stairsTrendingButton.on('click', function() {
   user.findTrendingStairsDays();
   // trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
   trendingStairsPhraseContainer.html(`<p class='trend-line'>${user.trendingStairsDays[0]}</p>`);
@@ -285,9 +285,10 @@ stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesAc
 // stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageStepsThisWeek(todayDate);
 stepsCalendarTotalStepsWeekly.text(user.calculateAverageStepsThisWeek(todayDate));
 
-stepsTrendingButton.addEventListener('click', function() {
+$stepsTrendingButton.on('click', function() {
   user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+  // trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+  trendingStepsPhraseContainer.html(`<p class='trend-line'>${user.trendingStepDays[0]}</p>`);
 });
 
 // stepsFriendActiveMinutesAverageToday.innerText = userRepository.calculateAverageMinutesActive(todayDate);
