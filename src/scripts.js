@@ -16,6 +16,61 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 
 
+
+//#########
+let userDataApi, sleepDataApi, actDataApi, hydDataApi, hydrationDataApi, activityDataApi;
+let userApi, sleepApi, actApi, hydApi;
+let getCounter = 0;
+function getApiData(ext, callback){
+  fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/" + ext)
+  .then(response => response.json())
+  .then(data => {
+    callback(data);
+    // getCounter++;
+    // getCheck()
+  })
+  .catch(error => console.log(error))
+
+}
+
+let userRepositoryApi = new UserRepository();
+function startInitalizer() {
+
+  getApiData('users/userData', (data) => {
+    console.log(data)
+    userDataApi = data.userData;
+    userApi = new User(userDataApi[0]);
+    userRepositoryApi.users.push(userApi)
+    // console.log(userApi);
+    // console.log(userRepositoryApi);
+
+  });
+  getApiData('sleep/sleepData', (data) => {
+    console.log(data)
+    sleepDataApi = data.sleepData;
+    sleepApi = new Sleep(sleepDataApi, userRepositoryApi);
+    // console.log(sleepApi);
+  });
+  getApiData('activity/activityData', (data) => {
+    console.log(data)
+    activityDataApi = data.activityData;
+    activityApi = new Activity(activityDataApi, userRepositoryApi);
+    // console.log(activityApi);
+  });
+  getApiData('hydration/hydrationData', (data) => {
+    // console.log(data)
+    hydrationDataApi = data.hydrationData;
+    hydrationApi = new Hydration(hydrationDataApi, userRepositoryApi);
+    // console.log(hydrationApi);
+  });
+}
+
+startInitalizer();
+
+
+
+
+
 // can i wrap this whole section of new Classes and put that in the api call??
 let userRepository = new UserRepository();
 // console.log(userRepository);
