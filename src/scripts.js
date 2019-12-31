@@ -81,7 +81,7 @@ let sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => {
 let stairsCalendarCard = document.querySelector('#stairs-calendar-card');
 let stairsCalendarFlightsAverageWeekly = $('#stairs-calendar-flights-average-weekly');
 let stairsCalendarStairsAverageWeekly = document.querySelector('#stairs-calendar-stairs-average-weekly');
-let stepsMainCard = document.querySelector('#steps-main-card');
+let stepsMainCard = $('#steps-main-card');
 let stepsInfoCard = document.querySelector('#steps-info-card');
 let stepsFriendsCard = document.querySelector('#steps-friends-card');
 let stepsTrendingCard = document.querySelector('#steps-trending-card');
@@ -114,10 +114,10 @@ $stairsTrendingButton.on('click', updateTrendingStairsDays());
 $stepsTrendingButton.on('click', updateTrendingStepDays());
 
 function flipCard(cardToHide, cardToShow) {
-  cardToHide.classList.add('hide');
-  cardToShow.classList.remove('hide');
-  // cardToHide.addClass('hide');
-  // cardToShow.removeClass('hide');
+  // cardToHide.classList.add('hide');
+  // cardToShow.classList.remove('hide');
+  cardToHide.addClass('hide');
+  cardToShow.removeClass('hide');
 }
 
 function showDropdown() {
