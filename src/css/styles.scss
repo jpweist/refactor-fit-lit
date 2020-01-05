@@ -299,3 +299,15 @@ main {
 .yellow-text {
   color: $yellow-text;
 }
+
+@media (max-width: 600px) {
+
+  main {
+    grid-template-areas:
+          'steps'
+          'hydration'
+          'stairs'
+          'sleep';
+  }
+
+}
